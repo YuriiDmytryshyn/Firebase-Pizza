@@ -1,0 +1,43 @@
+<table class="table table-sm table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Count</th>
+            <th scope="col">Price</th>
+            <th scope="col">Total</th>
+            <th scope="col">Add Count</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let prod of basket; let i=index">
+            <td>{{ i+1}}</td>
+            <td>{{ prod.name }}</td>
+            <td>{{ prod.count }}</td>
+            <td>{{ prod.price }}</td>
+            <td>{{ prod.price*prod.count }}</td>
+            <td>
+                <div class="button">
+                    <button (click)="prodCount(prod, false)" class="btn btn-danger">-</button>
+                    <input class="input" type="text" maxlength="3" [value]="prod.count">
+                    <button (click)="prodCount(prod, true)" class="btn btn-success">+</button>
+                </div>
+            </td>
+            <td>
+                <button (click)="indexProduct(prod)" (click)="closeModal(closeTemplate)" class="btn btn-warning">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="7">
+                <h2 class="text-right text-danger">Total to pay: {{ totalPrice }} грн.</h2>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<ng-template #closeTemplate>
+    <div class="modal-body text-center">
+        <button type="button" (click)="modalRef.hide()" class="btn btn-dark mr-1">Dismiss</button>
+        <button type="button" (click)="deleteProduct()" (click)="modalRef.hide()" class="btn btn-danger">Delete</button>
+    </div>
+</ng-template>

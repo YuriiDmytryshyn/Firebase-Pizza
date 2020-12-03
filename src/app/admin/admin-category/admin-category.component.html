@@ -1,0 +1,62 @@
+<div class="card">
+    <div class="card-header">
+        <span class="title">Category</span>
+        <button type="button" class="btn btn-dark" (click)="openModal(template)">Add</button>
+    </div>
+    <div class="input-group mb-3 mt-3">
+        <input placeholder="filter category..." [(ngModel)]="searchCategory" name="searchCategory" type="text"
+            class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr class="table-active">
+                <th scope="col">#</th>
+                <th class="col-sm-4" scope="col">Name</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let category of adminCategories | searchCategory:searchCategory;let i=index">
+                <th>{{ i + 1 }}</th>
+                <th>{{ category.name }}</th>
+                <td>
+                    <button class="btn btn-dark" (click)="openModal(template)"
+                        (click)="editCategory(category)">edit</button>
+                </td>
+                <td>
+                    <button (click)="deleteCategory(category)" (click)="openModa(closeTemplate)"
+                        class="btn btn-dark">delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #template>
+    <div class="add-modal">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Modal</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-header">
+            <input placeholder="name here..." type="text" class="form-control" aria-label="Sizing example input"
+                (input)="changeInp()" [(ngModel)]="inputCategory" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <div class="modal-button">
+            <button type="button" (click)="modalRef.hide()" (click)="resetForm()"
+                class="btn btn-dark mr-1">Close</button>
+            <button *ngIf="!Status" type="button" [disabled]="disabledStatys" (click)="modalRef.hide()"
+                (click)="addCategory()" class="btn btn-dark">Add</button>
+            <button *ngIf="Status" type="button" (click)="modalRef.hide()" (click)="saveCategory()"
+                class="btn btn-dark">Save edit</button>
+        </div>
+    </div>
+</ng-template>
+<ng-template #closeTemplate>
+    <div class="modal-body text-center">
+        <button type="button" (click)="modalRef.hide()" class="btn btn-dark mr-1">Dismiss</button>
+        <button type="button" (click)="delCategory()" (click)="modalRef.hide()" class="btn btn-danger">Delete</button>
+    </div>
+</ng-template>

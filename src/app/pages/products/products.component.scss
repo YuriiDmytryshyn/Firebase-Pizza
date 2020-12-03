@@ -1,0 +1,67 @@
+.author {
+    display: flex;
+    color: blue;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.img{
+    height: 300px;
+}
+
+.card-text{
+    text-align: justify;
+}
+
+.productCountWrapper{
+    user-select: none;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.toBuy{
+    display: flex;
+    justify-content: space-around;
+}
+
+.total{
+    margin: 0px 5px;
+    width: 50px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba($color: #000000, $alpha: 0.5);
+    border-radius: 5px;
+}
+
+.lessProduct{
+    width: 30px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba($color: #000000, $alpha: 0.5);
+    border-radius: 5px;
+}
+
+.moreProduct{
+    width: 30px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba($color: #000000, $alpha: 0.5);
+    border-radius: 5px;
+}
+
+.productCountWrapper{
+    display: flex;
+}
+
+.price{
+    display: flex;
+}

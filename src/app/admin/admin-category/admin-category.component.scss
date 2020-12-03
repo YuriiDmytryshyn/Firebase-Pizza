@@ -1,0 +1,30 @@
+.card-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.title{
+    font-size: 20px;
+}
+
+.input-group{
+    width: 95%;
+    margin: 0px auto;
+}
+
+.table{
+    width: 95%;
+    margin: 0px auto;
+    margin-bottom: 10px;
+}
+
+.add-modal{
+    height: 200px;
+}
+
+.modal-button{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    margin-top: 10px;
+}

@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="container__image">
+        <img *ngIf="!Status" class="user__img" (click)="openModalAdd(addTemplate)" src="assets/images/no-person.jpg" alt="user">
+        <img *ngIf="Status" class="user__img" (click)="openModalAdd(addTemplate)" [attr.src]="userImage" alt="user">
+    </div>
+    <div>
+        <h3>{{ myFirstName }} {{ myLastName }} {{ myOld }}</h3>
+        <span>{{ myCity }}</span>
+    </div>
+</div>
+<ng-template #addTemplate>
+    <div class="add-modal" [style.height]="addModalHeight + 'px'">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Modal title</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form class="form">
+            <div class="form-group">
+                <label for="myFirstName">My first name: </label>
+                <input type="text" class="form-control" id="myFirstName" [(ngModel)]="myFirstName" name="myFirstName">
+            </div>
+            <div class="form-group">
+                <label for="myLastName">My last name: </label>
+                <input type="text" class="form-control" id="myLastName" [(ngModel)]="myLastName" name="myLastName">
+            </div>
+            <div class="form-group">
+                <label for="myCity">My city: </label>
+                <input type="text" class="form-control" id="myCity" [(ngModel)]="myCity" name="myCity">
+            </div>
+            <div class="form-group">
+                <label for="myOld">My years old: </label>
+                <input [(ngModel)]="myOld" name="myOld" type="number" class="form-control" id="myOld">
+            </div>
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile02" (change)="uploadFile($event)">
+                    <label class="custom-file-label" for="inputGroupFile02"
+                        aria-describedby="inputGroupFileAddon02">Choose
+                        file</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <progressbar class="progress-striped" [striped]="true" [value]="dynamic" type="dark"></progressbar>
+            </div>
+            <div *ngIf="fileUploaded" class="addImg">File uploaded. Now to can add product.</div>
+            <div class="modal-header"></div>
+        </form>
+        <div class="modal-button">
+            <button type="button" (click)="modalRef.hide()" class="btn btn-dark mr-1">Close</button>
+            <button type="button" (click)="cheackLocalUser()" (click)="modalRef.hide()"
+                class="btn btn-dark">Save</button>
+        </div>
+    </div>
+</ng-template>

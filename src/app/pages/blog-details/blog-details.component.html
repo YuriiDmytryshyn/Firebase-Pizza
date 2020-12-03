@@ -1,0 +1,11 @@
+<div class="card text-white" style="max-width: 650px;">
+    <img [attr.src]="blog?.image" class="card-img" alt="...">
+    <div class="card-img-overlay">
+        <h5 class="card-title">{{ blog?.title }}</h5>
+        <p class="card-text">{{ blog?.text }}</p>
+        <div class="button">
+            <p class="card-text">{{ blog?.date | date:'MMMM d, y'}} {{ blog?.author }}</p>
+            <button (click)="location.back()" type="button" class="btn btn-danger">Back</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Pizza</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="[ '/home' ]">Home</a>
+                </li>
+                <ul class="navbar-nav mr-auto" *ngFor="let cat of allCategory">
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['menu/', cat.name]">{{ cat.name }}</a>
+                    </li>
+                </ul>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="[ '/blog' ]">blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="[ '/about' ]">about</a>
+                </li>
+                <li *ngIf="isAdmin" class="nav-item">
+                    <a class="nav-link" [routerLink]="[ '/admin' ]">admin</a>
+                </li>
+            </ul>
+            <div class="basket">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a *ngIf="isProfile" class="nav-link" [routerLink]="[ '/profile' ]">
+                            <img class="basketImg" [attr.src]="profileImg" alt="profile">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <img *ngIf="!isLogin" class="basketImg" (click)="signUpModal(singUp)"
+                                src="assets/images/door-closed-solid.svg" alt="signUp">
+                            <img *ngIf="isLogin" class="basketImg" (click)="signOutModal(signOutTemplate)"
+                                src="assets/images/door-open-solid.svg" alt="signUp"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="[ '/basket' ]">
+                            <img class="basketImg" src="assets/images/iconfinder_bag_3338916.svg" alt="basket">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <span class="totalPrice">{{ totalPrice }} грн.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<ng-template #singUp>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div>
+            <form>
+                <div class="form-group">
+                    <label for="userEmail">Email address</label>
+                    <input [(ngModel)]="userEmail" name="userEmail" type="email" class="form-control" id="userEmail">
+                </div>
+                <div class="form-group">
+                    <label for="userPassword">Password</label>
+                    <input [(ngModel)]="userPassword" name="userPassword" type="password" class="form-control"
+                        id="userPassword">
+                </div>
+                <div class="signButton">
+                    <button (click)="signUpUser()" (click)="modalRef.hide()" type="button"
+                        class="btn btn-dark">signUp</button>
+                    <button (click)="singInUser()" (click)="modalRef.hide()" type="button"
+                        class="btn btn-danger">signIn</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
+<ng-template #signOutTemplate>
+    <div class="modal-body text-center">
+        <button type="button" (click)="modalRef.hide()" class="btn btn-dark mr-1">Dismiss</button>
+        <button type="button" (click)="modalRef.hide()" (click)="signOutUser()" class="btn btn-warning">sign
+            out</button>
+    </div>
+</ng-template>
+
+<router-outlet></router-outlet>

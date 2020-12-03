@@ -1,0 +1,64 @@
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 20px;
+}
+
+.input-group {
+    width: 95%;
+    margin: 0px auto;
+}
+
+.table {
+    width: 90%;
+    margin: 0px auto;
+    margin-bottom: 10px;
+}
+
+.tableImg {
+    width: 30px;
+    height: 30px;
+}
+
+.add-modal {
+    padding: 10px;
+}
+
+.modal-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.form {
+    margin: 10px 0px;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & label {
+        margin-right: 10px;
+    }
+}
+
+.form-control {
+    width: 80%;
+}
+
+.modal-header {
+    padding: 5px;
+}
+
+.addImg{
+    background-color: lightgrey;
+    height: 30px;
+    width: 100%;
+    border-radius: 4px;
+    padding: 2px;
+}

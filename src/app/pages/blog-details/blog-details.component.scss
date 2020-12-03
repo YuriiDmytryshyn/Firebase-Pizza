@@ -1,0 +1,26 @@
+.card {
+    margin: 5px auto;
+    user-select: none;
+    height: 600px;
+    width: 700px;
+    border: none;
+}
+
+.card-img-overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    user-select: none;
+    height: 600px;
+    width: 700px;
+}
+
+.button {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-img {
+    height: 600px;
+    width: 700px;
+}

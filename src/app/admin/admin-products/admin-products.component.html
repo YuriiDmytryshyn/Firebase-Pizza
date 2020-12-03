@@ -1,0 +1,102 @@
+<div class="card">
+    <div class="card-header">
+        <span class="title">Product</span>
+        <button type="button" class="btn btn-dark" (click)="openModalAdd(addTemplate)">Add</button>
+    </div>
+    <div class="input-group mb-3 mt-3">
+        <input placeholder="filter products..." [(ngModel)]="searchProduct" name="searchProduct" type="text" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default">
+    </div>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr class="table-active">
+                <th scope="col">#</th>
+                <th scope="col">Category</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Image</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let products of adminProducts | searchProduct:searchProduct;let i=index">
+                <th>{{ i + 1 }}</th>
+                <th>{{ products.category.name }}</th>
+                <th>{{ products.name }}</th>
+                <th>{{ products.description }}</th>
+                <th>{{ products.price }}</th>
+                <th><img class="tableImg" [attr.src]="products.image" alt="x-image"></th>
+                <td>
+                    <button class="btn btn-dark" (click)="editProduct(products)"
+                        (click)="openModalAdd(addTemplate)">edit</button>
+                </td>
+                <td>
+                    <button (click)="openModalDelete(closeTemplate)" (click)="selectProduct(products)"
+                        class="btn btn-dark">delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #addTemplate>
+    <div class="add-modal" [style.height]="addModalHeight + 'px'">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Modal title</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()" (click)="resetForm()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form class="form">
+            <div class="form-group">
+                <label for="chooseCategory">Category: </label>
+                <select [(ngModel)]="productCategory" (change)="setCategory()" class="form-control" id="chooseCategory"
+                    name="productCategory">
+                    <option *ngFor="let categories of adminCategories">
+                        {{ categories.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="productName">Name: </label>
+                <input type="text" class="form-control" id="productName" [(ngModel)]="productName" name="productName">
+            </div>
+            <div class="form-group">
+                <label for="productDescription">Description: </label>
+                <textarea class="form-control" id="text" [(ngModel)]="productDescription"
+                    name="productDescription"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="productPrice">Price: </label>
+                <input [(ngModel)]="productPrice" name="productPrice" type="number" class="form-control"
+                    id="productPrice">
+            </div>
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile02" (change)="uploadFile($event)">
+                    <label class="custom-file-label" for="inputGroupFile02"
+                        aria-describedby="inputGroupFileAddon02">Choose
+                        file</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <progressbar class="progress-striped" [striped]="true" [value]="dynamic" type="dark"></progressbar>
+            </div>
+            <div *ngIf="fileUploaded" class="addImg">File uploaded. Now to can add product.</div>
+            <div class="modal-header"></div>
+        </form>
+        <div class="modal-button">
+            <button type="button" (click)="modalRef.hide()" (click)="resetForm()"
+                class="btn btn-dark mr-1">Close</button>
+            <button *ngIf="!Status" type="button" (click)="addProduct()" class="btn btn-dark">Add</button>
+            <button *ngIf="Status" type="button" (click)="saveProduct()" class="btn btn-dark">Save</button>
+        </div>
+    </div>
+</ng-template>
+<ng-template #closeTemplate>
+    <div class="modal-body text-center">
+        <button type="button" (click)="modalRef.hide()" class="btn btn-dark mr-1">Dismiss</button>
+        <button type="button" (click)="modalRef.hide()" (click)="deleteProduct()" class="btn btn-danger">Delete</button>
+    </div>
+</ng-template>

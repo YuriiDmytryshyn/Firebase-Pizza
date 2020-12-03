@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4" *ngFor="let blogs of userBlogs">
+            <div class="card">
+                <img [attr.src]="blogs.image" class="card-img-top img" alt="...">
+                <div class="card-body">
+                    <div class="author">
+                        <!-- <span>{{ blogs.date | date:'MMMM d, y' }}</span> -->
+                        <span>&ensp;{{ blogs.author }}</span>
+                    </div>
+                    <div class="bottom">
+                        <div class="text">
+                            <h5 class="card-title">{{ blogs.title }}</h5>
+                            <p class="card-text">{{ blogs.text }}</p>
+                        </div>
+                        <div class="button">
+                            <a [routerLink]="[ '/blog', blogs.id ]" class="btn btn-dark">Deteils</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

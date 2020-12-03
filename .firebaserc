@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "july-ca08d": {
+      "hosting": {
+        "firebasePizza": [
+          "july-ca08d"
+        ]
+      }
+    }
+  }
+}

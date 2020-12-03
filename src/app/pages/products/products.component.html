@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        <div class="card" style="width: 18rem;" *ngFor="let prod of products">
+            <img [attr.src]="prod.image" class="card-img-top" alt="...">
+            <a [routerLink]="[prod.id]" class="btn btn-dark">Deteils</a>
+            <div class="card-body">
+                <div class="price">
+                    <h5 class="card-title">{{ prod.name }}</h5>
+                    <h4>{{ prod.price * prod.count }} грн.</h4>
+                </div>
+                <p class="card-text">{{ prod.description }}</p>
+            </div>
+            <div class="toBuy">
+                <div class="productCountWrapper">
+                    <span class=" lessProduct" (click)="prodCount(prod, false)">-</span>
+                    <div class="total">{{ prod.count }}</div>
+                    <span class=" moreProduct" (click)="prodCount(prod, true)">+</span>
+                </div>
+                <div>
+                    <button type="button" (click)="addToBasket(prod)" class="btn btn-dark">Купити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
