@@ -1,18 +1,16 @@
 <div class="container">
     <div class="row">
-        <div class="col-4" *ngFor="let blogs of userBlogs">
-            <div class="card">
-                <img [attr.src]="blogs.image" class="card-img-top img" alt="...">
-                <a [routerLink]="[ '/blog', blogs.id ]" class="btn btn-dark">Deteils</a>
-                <div class="card-body">
-                    <div class="author">
-                        <span>{{ blogs.date | date:'MMMM d, y' }}</span>
-                        <span>&ensp;{{ blogs.author }}</span>
-                    </div>
-                    <div class="text">
-                        <h5 class="card-title">{{ blogs.title }}</h5>
-                        <p class="card-text">{{ blogs.text }}</p>
-                    </div>
+        <div class="card" style="width: 18rem;" *ngFor="let blogs of userBlogs">
+            <img [attr.src]="blogs.image" class="card-img-top" alt="...">
+            <a [routerLink]="[ '/blog', blogs.id ]" class="btn btn-dark">Details</a>
+            <div class="card-body">
+                <div class="author">
+                    <h5 class="card-title">{{ blogs.date | date:'MMMM d, y' }}</h5>
+                    <h4>{{ blogs.author }}</h4>
+                </div>
+                <div class="text">
+                    <h5 class="card-title">{{ blogs.title }}</h5>
+                    <p class="card-text">{{ blogs.text }}</p>
                 </div>
             </div>
         </div>
