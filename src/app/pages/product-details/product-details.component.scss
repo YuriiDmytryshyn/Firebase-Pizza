@@ -7,4 +7,15 @@
 .card-img-top{
     height: 450px;
     width: 700px;
+    border-radius: 5px;
+}
+
+.button{
+    display: flex;
+    justify-content: space-between;
+}
+
+.price{
+    font-size: 25px;
+
 }

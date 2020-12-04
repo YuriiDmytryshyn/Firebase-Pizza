@@ -1,3 +1,15 @@
+.card{
+    margin-right: 40px;
+    margin-top: 10px;
+    box-shadow: 0px 0px 2px 1px rgba($color: #000000, $alpha: 0.3);
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
 .author {
     display: flex;
     color: blue;
@@ -10,6 +22,7 @@
 
 .img{
     height: 300px;
+    width: 300px;
 }
 
 .card-text{
@@ -25,6 +38,7 @@
 .toBuy{
     display: flex;
     justify-content: space-around;
+    margin-bottom: 10px;
 }
 
 .total{
@@ -64,4 +78,6 @@
 
 .price{
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

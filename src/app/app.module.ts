@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar'
 
 import { AppRoutingModule } from './app-routing.module';
@@ -61,6 +62,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
     HttpClientModule,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
+    CarouselModule.forRoot(),
     ProgressbarModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
