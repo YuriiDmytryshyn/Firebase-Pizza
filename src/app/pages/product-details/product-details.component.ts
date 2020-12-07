@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from 'src/app/shared/interfaces/product.interface';
 import { ProductsService } from 'src/app/shared/services/products.service';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-details',
@@ -28,7 +27,6 @@ export class ProductDetailsComponent implements OnInit {
     this.prodService.getSingleProduct(id).subscribe(
       data => {
         this.product = data.data();
-        console.log(this.product)
       })
   };
 

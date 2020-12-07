@@ -37,30 +37,33 @@ export class ProfileComponent implements OnInit {
 
   private userCredential(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
-    this.myFirstName = this.currentUser.firtName;
+    this.myFirstName = this.currentUser.firtsName;
     this.myLastName = this.currentUser.lastName;
     this.myCity = this.currentUser.city;
     this.myOld = this.currentUser.old;
     if (this.currentUser.image != undefined) {
       this.Status = true;
+      this.userImage = this.currentUser.image;
     }
-    this.userImage = this.currentUser.image;
   }
 
   cheackLocalUser(): void {
     if (this.myFirstName && this.myLastName && this.myCity && this.myOld) {
       if (localStorage.getItem('user')) {
         let user = JSON.parse(localStorage.getItem('user'));
-        if (user.firtName === undefined || user.lastName === undefined || user.old === undefined || user.city === undefined) {
+        if (user.firtName != this.myFirstName || user.lastName != this.myLastName || user.old != this.myOld || user.city != this.myCity || user.image != this.userImage) {
           const data = {
-            firtName: this.myFirstName,
+            firstName: this.myFirstName,
             lastName: this.myLastName,
             city: this.myCity,
             old: this.myOld,
             image: this.userImage
           };
-          this.authService.updateUserData(user.id, data);
-          this.updateLocal(data);
+          this.authService.updateUserData(user.id, data).then(
+            () => {
+              this.updateLocal(data)
+            }
+          )
         }
       }
     }

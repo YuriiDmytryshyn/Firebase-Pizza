@@ -1,16 +1,18 @@
 <div class="container">
     <div class="row">
         <div class="card" style="width: 18rem;" *ngFor="let prod of products">
-            <img [attr.src]="prod.image" class="card-img-top" alt="...">
+            <img [attr.src]="prod.image" [routerLink]="[prod.id]" class="card-img-top" alt="...">
             <a [routerLink]="[prod.id]" class="btn btn-dark">Details</a>
             <div class="card-body">
-                <div class="price">
-                    <h5 class="card-title">{{ prod.name }}</h5>
-                    <h4>{{ prod.price * prod.count }} грн.</h4>
+                <div class="title">
+                    <h5 [routerLink]="[prod.id]" class="card-title">{{ prod.name }}</h5>
                 </div>
                 <p class="card-text">{{ prod.description }}</p>
             </div>
             <div class="toBuy">
+                <div>
+                    <span class="price">{{ prod.price * prod.count }} грн.</span>
+                </div>
                 <div class="productCountWrapper">
                     <span class=" lessProduct" (click)="prodCount(prod, false)">-</span>
                     <div class="total">{{ prod.count }}</div>

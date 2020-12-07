@@ -1,40 +1,82 @@
-<table class="table table-sm table-dark">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Count</th>
-            <th scope="col">Price</th>
-            <th scope="col">Total</th>
-            <th scope="col">Add Count</th>
-            <th scope="col">Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let prod of basket; let i=index">
-            <td>{{ i+1}}</td>
-            <td>{{ prod.name }}</td>
-            <td>{{ prod.count }}</td>
-            <td>{{ prod.price }}</td>
-            <td>{{ prod.price*prod.count }}</td>
-            <td>
-                <div class="button">
-                    <button (click)="prodCount(prod, false)" class="btn btn-danger">-</button>
-                    <input class="input" type="text" maxlength="3" [value]="prod.count">
-                    <button (click)="prodCount(prod, true)" class="btn btn-success">+</button>
-                </div>
-            </td>
-            <td>
-                <button (click)="indexProduct(prod)" (click)="closeModal(closeTemplate)" class="btn btn-warning">Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="7">
-                <h2 class="text-right text-danger">Total to pay: {{ totalPrice }} грн.</h2>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="container">
+    <section class="information">
+        <form class="form">
+            <div class="form-group">
+                <label for="myFirstName">My first name: </label>
+                <input type="text" class="form-control" id="myFirstName" [(ngModel)]="myFirstName" name="myFirstName">
+            </div>
+            <div class="form-group">
+                <label for="myLastName">My last name: </label>
+                <input type="text" class="form-control" id="myLastName" [(ngModel)]="myLastName" name="myLastName">
+            </div>
+            <div class="form-group">
+                <label for="myPhone">My phone: </label>
+                <input type="text" class="form-control" id="myPhone" [(ngModel)]="myPhone" name="myPhone">
+            </div>
+            <div class="form-group">
+                <label for="myCity">My city: </label>
+                <input type="text" class="form-control" id="myCity" [(ngModel)]="myCity" name="myCity">
+            </div>
+            <div class="form-group">
+                <label for="myStreet">My street: </label>
+                <input [(ngModel)]="myStreet" name="myStreet" type="text" class="form-control" id="myStreet">
+            </div>
+            <div class="form-group">
+                <label for="myHouse">My house: </label>
+                <input [(ngModel)]="myHouse" name="myHouse" type="text" class="form-control" id="myHouse">
+            </div>
+            <div class="form-group comments">
+                <label for="myComments">My Comments: </label>
+                <textarea [(ngModel)]="myComments" name="myComments" id="myComments" cols="30" rows="5"></textarea>
+            </div>
+        </form>
+    </section>
+    <section class="myTable">
+        <table class="table table-sm table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Count</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Add Count</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let prod of basket; let i=index">
+                    <td>{{ i+1}}</td>
+                    <td>{{ prod.name }}</td>
+                    <td>{{ prod.count }}</td>
+                    <td>{{ prod.price }}</td>
+                    <td>{{ prod.price*prod.count }}</td>
+                    <td>
+                        <div class="button">
+                            <button (click)="prodCount(prod, false)" class="btn btn-danger">-</button>
+                            <input class="input" type="text" maxlength="3" [value]="prod.count">
+                            <button (click)="prodCount(prod, true)" class="btn btn-success">+</button>
+                        </div>
+                    </td>
+                    <td>
+                        <button (click)="indexProduct(prod)" (click)="closeModal(closeTemplate)"
+                            class="btn btn-warning">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        <h2 class="text-right text-danger">Total to pay: {{ totalPrice }} грн.</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7" class="text-center">
+                        <button (click)="cheackLocalUser()" class="buy btn btn-danger">To Buy</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
 <ng-template #closeTemplate>
     <div class="modal-body text-center">
         <button type="button" (click)="modalRef.hide()" class="btn btn-dark mr-1">Dismiss</button>

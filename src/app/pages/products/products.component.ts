@@ -3,7 +3,6 @@ import { ActivatedRoute, Event, NavigationEnd, Router } from '@angular/router';
 import { IProduct } from 'src/app/shared/interfaces/product.interface';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { ProductsService } from 'src/app/shared/services/products.service';
-import { map } from 'rxjs/operators';
 
 
 

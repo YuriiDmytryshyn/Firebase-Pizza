@@ -8,6 +8,8 @@ import { ProgressbarModule } from 'ngx-bootstrap/progressbar'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgxUiLoaderModule, NgxUiLoaderRouterModule } from "ngx-ui-loader";
+import { ngxUiLoaderConfig } from "./preloader-config"
 
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -22,6 +24,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { BasketComponent } from './pages/basket/basket.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -32,7 +35,7 @@ import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchProductPipe } from './shared/pipes/search-product.pipe';
 import { SearchCategoryPipe } from './shared/pipes/search-category.pipe';
-import { ProfileComponent } from './pages/profile/profile.component';
+
 
 
 @NgModule({
@@ -67,7 +70,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    NgxUiLoaderRouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

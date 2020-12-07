@@ -1,9 +1,11 @@
 
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { Profile } from '../classes/profile.model';
+import { IOrder } from '../interfaces/order.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +26,8 @@ export class AuthService {
   signUp(email: string, password: string): void {
     this.auth.createUserWithEmailAndPassword(email, password)
       .then(userResponse => {
-        const user = {
-          email: userResponse.user.email,
-          role: 'user',
-        };
-        this.db.collection('users').add(user)
+        const user = new Profile(userResponse.user.email);
+        this.db.collection('users').add({ ...user })
           .then(collection => {
             collection.get()
               .then(user => {
@@ -62,6 +61,7 @@ export class AuthService {
             })
           })
       })
+      .catch(err => console.log(err));
   };
 
   signOut(): void {
@@ -71,10 +71,15 @@ export class AuthService {
         this.cheackSignIn.next(false);
         this.router.navigateByUrl('home');
       })
+      .catch(err => console.log(err));
   };
 
   updateUserData(id: string, data: any): Promise<void> {
     return this.userRef.doc(id).update({ ...data });
-  }
+  };
+
+  updateUserOrder(id: string, data: any): Promise<void> {
+    return this.userRef.doc(id).update({ ...data });
+  };
 
 }
