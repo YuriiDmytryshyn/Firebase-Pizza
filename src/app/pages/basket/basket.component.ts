@@ -105,7 +105,7 @@ export class BasketComponent implements OnInit {
       this.totalPrice,
       this.myComments
     );
-    this.currentUser.orders.push(this.authService.updateUserOrder(this.currentUser.id, order).then(
+    this.authService.updateUserOrder(this.currentUser.id, order).then(
       () => {
         this.currentUser.orders.push(this.basket)
         this.updateLocalOrder(order);
@@ -114,17 +114,7 @@ export class BasketComponent implements OnInit {
         this.orderService.basket.next(this.basket);
         this.totalPrice = 0;
       }
-    ))
-    // this.authService.updateUserOrder(this.currentUser.id, order).then(
-    //   () => {
-    //     this.currentUser.orders.push(this.basket)
-    //     this.updateLocalOrder(order);
-    //     this.basket = [];
-    //     localStorage.removeItem('basket');
-    //     this.orderService.basket.next(this.basket);
-    //     this.totalPrice = 0;
-    //   }
-    // )
+    )
   }
 
   cheackLocalUser(): void {
